@@ -205,3 +205,21 @@ footer {
         font-size: 28px;
     }
 }
+.menu-toggle {
+    display: none;
+}
+
+.statistics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.about-points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.issue-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}

@@ -1,0 +1,323 @@
+/* GLOBAL */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f8fd;
+    color: #17243a;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* MAIN CONTAINER */
+
+.auth-container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+/* LEFT PANEL */
+
+.auth-left {
+    background: linear-gradient(
+        140deg,
+        #0866c6,
+        #104b91
+    );
+
+    color: white;
+    padding: 45px 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.brand {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand span {
+    background: white;
+    color: #0866c6;
+    padding: 5px 12px;
+    border-radius: 8px;
+}
+
+.left-content {
+    max-width: 440px;
+    margin: 50px auto;
+}
+
+.location-icon {
+    font-size: 55px;
+    margin-bottom: 25px;
+}
+
+.left-content h1 {
+    font-size: 38px;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.left-content > p {
+    color: #e1edff;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.benefits {
+    margin-top: 30px;
+}
+
+.benefits p {
+    margin-bottom: 15px;
+    color: #edf5ff;
+}
+
+.left-footer {
+    font-size: 13px;
+    color: #d4e5fa;
+}
+
+
+/* RIGHT PANEL */
+
+.auth-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 25px;
+}
+
+.auth-form {
+    width: 100%;
+    max-width: 430px;
+    background: white;
+    padding: 38px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+}
+
+.auth-form h2 {
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.form-subtitle {
+    color: #778397;
+    font-size: 13px;
+    margin-bottom: 28px;
+}
+
+
+/* FORM INPUTS */
+
+.form-group {
+    margin-bottom: 19px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #dce3ec;
+    border-radius: 7px;
+    outline: none;
+    font-size: 14px;
+    background: #fafcff;
+}
+
+.form-group input:focus {
+    border-color: #0866c6;
+    box-shadow: 0 0 0 3px rgba(8,102,198,0.1);
+}
+
+
+/* PASSWORD */
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 65px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #0866c6;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* OPTIONS */
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    font-size: 12px;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.form-options a {
+    color: #0866c6;
+}
+
+.terms {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    margin: 18px 0;
+}
+
+
+/* BUTTON */
+
+.auth-button {
+    width: 100%;
+    padding: 14px;
+    background: #0866c6;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.auth-button:hover {
+    background: #064f9b;
+}
+
+
+/* MESSAGES */
+
+.form-message {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+.form-message.success {
+    color: #16865e;
+}
+
+.form-message.error {
+    color: #d52f3d;
+}
+
+
+/* PAGE LINKS */
+
+.switch-page {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 13px;
+    color: #68778b;
+}
+
+.switch-page a {
+    color: #0866c6;
+    font-weight: bold;
+}
+
+.back-home {
+    display: block;
+    text-align: center;
+    color: #0866c6;
+    font-size: 13px;
+    margin-top: 25px;
+}
+
+
+/* TABLET AND MOBILE */
+
+@media (max-width: 900px) {
+
+    .auth-container {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-left {
+        min-height: 300px;
+        padding: 30px 8%;
+    }
+
+    .left-content {
+        margin: 40px 0;
+    }
+
+    .left-content h1 {
+        font-size: 30px;
+    }
+
+    .auth-right {
+        padding: 40px 20px;
+    }
+
+    .left-footer {
+        margin-top: 10px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .auth-form {
+        padding: 25px 20px;
+    }
+
+    .auth-form h2 {
+        font-size: 23px;
+    }
+
+    .left-content h1 {
+        font-size: 27px;
+    }
+
+    .auth-left {
+        min-height: 280px;
+    }
+
+    .form-options {
+        font-size: 11px;
+    }
+}
