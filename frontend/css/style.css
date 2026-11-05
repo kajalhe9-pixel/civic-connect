@@ -1,4 +1,8 @@
-/* General Styling */
+/* =====================================
+   CIVIC-CONNECT - MAIN STYLESHEET
+===================================== */
+
+/* 1. GLOBAL STYLING */
 
 * {
     margin: 0;
@@ -8,73 +12,138 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 85px;
 }
 
 body {
     font-family: Arial, sans-serif;
     background: #f5f8ff;
     color: #17243a;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
 }
 
 
-/* Navbar */
+/* 2. NAVBAR */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: white;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
 
 .navbar {
+    max-width: 1400px;
+    margin: auto;
+    min-height: 75px;
+    padding: 15px 7%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 7%;
-    background: white;
+    gap: 25px;
 }
 
 .logo {
-    font-size: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 23px;
     font-weight: bold;
     color: #0866c6;
-    text-decoration: none;
+    white-space: nowrap;
+}
+
+.logo-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 36px;
+    height: 36px;
+
+    background: #0866c6;
+    color: white;
+    border-radius: 9px;
 }
 
 .nav-links {
     display: flex;
+    align-items: center;
     list-style: none;
-    gap: 30px;
+    gap: 25px;
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: #333;
+    color: #45546a;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.3s;
 }
 
 .nav-links a:hover {
     color: #0866c6;
 }
 
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 .nav-buttons a {
-    text-decoration: none;
     padding: 10px 18px;
     border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .login-btn {
     color: #0866c6;
 }
 
-.signup-btn,
-.primary-btn {
+.signup-btn {
     background: #0866c6;
     color: white;
+    transition: 0.3s;
+}
+
+.signup-btn:hover,
+.primary-btn:hover {
+    background: #064f9b;
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #0866c6;
+    font-size: 26px;
+    cursor: pointer;
 }
 
 
-/* Hero Section */
+/* 3. HERO SECTION */
 
 .hero {
-    min-height: 480px;
-    display: flex;
+    min-height: 520px;
+    padding: 75px 8%;
+
+    display: grid;
+    grid-template-columns: 1.5fr 0.8fr;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 70px 20px;
+    gap: 60px;
+
     background: linear-gradient(
         135deg,
         #e9f1ff,
@@ -83,143 +152,740 @@ body {
 }
 
 .hero-content {
-    max-width: 750px;
+    max-width: 720px;
 }
 
 .tagline {
+    display: inline-block;
     color: #0866c6;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
     letter-spacing: 2px;
 }
 
 .hero h1 {
-    font-size: 46px;
-    margin: 25px 0;
+    font-size: clamp(32px, 4vw, 49px);
+    line-height: 1.2;
+    margin: 22px 0;
+    color: #17243a;
 }
 
 .hero h1 span {
+    display: inline;
     color: #0866c6;
 }
 
-.hero p {
+.hero-content > p {
+    max-width: 650px;
     color: #596579;
-    line-height: 1.7;
-    margin-bottom: 30px;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 28px;
+}
+
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
 }
 
 .primary-btn {
     display: inline-block;
-    padding: 14px 28px;
+    padding: 14px 25px;
+    background: #0866c6;
+    color: white;
     border-radius: 7px;
-    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.secondary-btn {
+    color: #0866c6;
+    font-weight: bold;
+}
+
+.secondary-btn:hover {
+    text-decoration: underline;
+}
+
+.hero-note {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+    color: #52647b;
+    font-size: 13px;
 }
 
 
-/* How It Works */
+/* 4. HERO DASHBOARD CARD */
 
-.how-it-works {
-    padding: 65px 7%;
+.hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
+}
+
+.visual-card {
+    width: 100%;
+    max-width: 340px;
+    padding: 28px;
+
+    background: white;
+    border-radius: 18px;
+
+    box-shadow: 0 15px 40px rgba(20, 65, 120, 0.12);
+}
+
+.visual-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 25px;
+}
+
+.visual-heading > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 45px;
+    height: 45px;
+
+    background: #e8f2ff;
+    border-radius: 12px;
+    font-size: 23px;
+}
+
+.visual-heading h3 {
+    font-size: 16px;
+}
+
+.visual-heading p {
+    font-size: 12px;
+    color: #7b8798;
+}
+
+.visual-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 0;
+    border-bottom: 1px solid #edf0f5;
+}
+
+.visual-stat small {
+    color: #7b8798;
+}
+
+.visual-stat h2 {
+    color: #0866c6;
+    font-size: 26px;
+}
+
+.visual-stat > span {
+    font-size: 22px;
+}
+
+.visual-message {
     text-align: center;
+    margin-top: 20px;
+    color: #16865e;
+    font-size: 12px;
+    font-weight: bold;
 }
 
-.how-it-works h2 {
-    font-size: 30px;
-    margin-bottom: 12px;
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #22b879;
+    border-radius: 50%;
+    margin-right: 5px;
 }
 
-.section-description {
-    color: #697586;
-    margin-bottom: 35px;
+.floating-icon {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 48px;
+    height: 48px;
+
+    background: white;
+    border-radius: 13px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    font-size: 23px;
 }
 
-.features {
+.icon-one {
+    top: -18px;
+    right: -10px;
+}
+
+.icon-two {
+    bottom: -15px;
+    left: -10px;
+}
+
+
+/* 5. STATISTICS SECTION */
+
+.statistics {
+    max-width: 1200px;
+    margin: auto;
+    padding: 35px 7%;
+
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
-.feature-card {
+.stat-item {
+    text-align: center;
+    padding: 18px 10px;
     background: white;
-    padding: 30px 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
 }
 
-.feature-card h3 {
+.stat-item h2 {
     color: #0866c6;
-    margin-bottom: 15px;
+    font-size: 29px;
+    margin-bottom: 4px;
 }
 
-.feature-card p {
+.stat-item p {
     color: #697586;
-    line-height: 1.6;
     font-size: 14px;
 }
 
 
-/* Footer */
+/* 6. COMMON SECTION STYLING */
 
-footer {
-    background: #102c50;
-    color: white;
+.section {
+    padding: 80px 8%;
     text-align: center;
-    padding: 22px;
+}
+
+.section-label {
+    color: #0866c6;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.section > h2 {
+    font-size: 32px;
+    line-height: 1.3;
+    margin-bottom: 15px;
+}
+
+.section-description {
+    max-width: 750px;
+    margin: 0 auto 40px;
+    color: #697586;
+    font-size: 15px;
+    line-height: 1.8;
 }
 
 
-/* Responsive Design */
+/* 7. ABOUT SECTION */
 
-@media (max-width: 768px) {
+.about {
+    background: white;
+}
+
+.about > h2 {
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-points {
+    max-width: 1150px;
+    margin: 45px auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.about-card {
+    padding: 30px 22px;
+    background: #f5f8ff;
+    border: 1px solid #e8eef8;
+    border-radius: 13px;
+    transition: 0.3s;
+}
+
+.about-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(8, 102, 198, 0.09);
+}
+
+.about-card > span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 55px;
+    height: 55px;
+
+    background: #e3efff;
+    border-radius: 14px;
+    font-size: 26px;
+    margin-bottom: 18px;
+}
+
+.about-card h3 {
+    color: #0866c6;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.about-card p {
+    color: #697586;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* 8. HOW IT WORKS SECTION */
+
+.how-it-works {
+    background: #f5f8ff;
+}
+
+.steps {
+    max-width: 1200px;
+    margin: 45px auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.step-card {
+    position: relative;
+    padding: 30px 20px;
+
+    background: white;
+    border: 1px solid #e9eef7;
+    border-radius: 14px;
+
+    transition: 0.3s;
+}
+
+.step-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+.step-number {
+    display: inline-block;
+    color: #9ab9e1;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.step-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 60px;
+    height: 60px;
+
+    margin: 0 auto 18px;
+
+    background: #e9f2ff;
+    border-radius: 15px;
+    font-size: 27px;
+}
+
+.step-card h3 {
+    font-size: 17px;
+    margin-bottom: 10px;
+    color: #0866c6;
+}
+
+.step-card p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #697586;
+}
+
+
+/* 9. ISSUE CATEGORIES */
+
+.issues {
+    background: white;
+}
+
+.issue-grid {
+    max-width: 1150px;
+    margin: 45px auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.issue-card {
+    text-align: left;
+    padding: 25px;
+
+    background: #f7faff;
+    border: 1px solid #e5edf8;
+    border-radius: 13px;
+
+    transition: 0.3s;
+}
+
+.issue-card:hover {
+    transform: translateY(-5px);
+    border-color: #9cc5f4;
+    box-shadow: 0 8px 22px rgba(8, 102, 198, 0.08);
+}
+
+.issue-card > span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+
+    background: #e5f0ff;
+    border-radius: 12px;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.issue-card h3 {
+    font-size: 18px;
+    color: #17243a;
+    margin-bottom: 7px;
+}
+
+.issue-card p {
+    font-size: 14px;
+    color: #697586;
+}
+
+
+/* 10. CALL TO ACTION */
+
+.cta {
+    text-align: center;
+    padding: 70px 20px;
+
+    background: linear-gradient(
+        135deg,
+        #0866c6,
+        #104b91
+    );
+
+    color: white;
+}
+
+.cta h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.cta p {
+    color: #e1edff;
+    margin-bottom: 25px;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 14px 25px;
+
+    background: white;
+    color: #0866c6;
+
+    border-radius: 7px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.cta-btn:hover {
+    background: #e8f2ff;
+    transform: translateY(-3px);
+}
+
+
+/* 11. FOOTER */
+
+.footer {
+    background: #102c50;
+    color: white;
+    padding: 55px 8% 20px;
+}
+
+.footer-content {
+    max-width: 1150px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 50px;
+}
+
+.footer-content h2 {
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.footer-content h3 {
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+.footer-content p {
+    color: #c6d7eb;
+    font-size: 14px;
+}
+
+.footer-content a {
+    display: block;
+    color: #c6d7eb;
+    font-size: 14px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.footer-content a:hover {
+    color: white;
+}
+
+.copyright {
+    max-width: 1150px;
+    margin: 35px auto 0;
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(255,255,255,0.15);
+
+    text-align: center;
+    color: #c6d7eb;
+    font-size: 13px;
+}
+
+
+/* =====================================
+   12. RESPONSIVE DESIGN
+===================================== */
+
+/* TABLETS */
+
+@media (max-width: 1000px) {
 
     .navbar {
-        flex-wrap: wrap;
-        gap: 18px;
+        padding: 15px 4%;
     }
 
     .nav-links {
         gap: 15px;
+    }
+
+    .hero {
+        padding: 65px 5%;
+        gap: 30px;
+    }
+
+    .steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-points {
+        gap: 15px;
+    }
+
+}
+
+
+/* MOBILE AND SMALL TABLETS */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        position: relative;
         flex-wrap: wrap;
+        padding: 15px 5%;
+    }
+
+    .menu-toggle {
+        display: block;
+        margin-left: auto;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        order: 3;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 12px 5px;
+    }
+
+    .nav-buttons {
+        order: 2;
+        gap: 8px;
+    }
+
+    .nav-buttons a {
+        padding: 9px 12px;
+        font-size: 13px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 65px 7%;
+        gap: 45px;
+    }
+
+    .hero-content {
+        margin: auto;
+    }
+
+    .hero-buttons,
+    .hero-note {
+        justify-content: center;
+    }
+
+    .hero-visual {
+        width: 100%;
+    }
+
+    .visual-card {
+        max-width: 380px;
+    }
+
+    .statistics {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 25px 5%;
+    }
+
+    .about-points {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .issue-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .footer-content > div:first-child {
+        grid-column: 1 / -1;
+    }
+
+}
+
+
+/* SMALL MOBILE SCREENS */
+
+@media (max-width: 480px) {
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .logo-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .nav-buttons a {
+        padding: 8px 10px;
+    }
+
+    .hero {
+        padding: 50px 6%;
     }
 
     .hero h1 {
         font-size: 32px;
     }
 
-    .features {
-        grid-template-columns: repeat(2, 1fr);
+    .hero-content > p {
+        font-size: 14px;
     }
-}
 
-@media (max-width: 480px) {
+    .hero-note {
+        font-size: 11px;
+        gap: 8px;
+    }
 
-    .features {
+    .section {
+        padding: 60px 6%;
+    }
+
+    .section > h2 {
+        font-size: 25px;
+    }
+
+    .statistics {
+        gap: 12px;
+    }
+
+    .stat-item h2 {
+        font-size: 24px;
+    }
+
+    .stat-item p {
+        font-size: 12px;
+    }
+
+    .about-points,
+    .steps,
+    .issue-grid {
         grid-template-columns: 1fr;
     }
 
-    .nav-links {
-        font-size: 13px;
+    .about-card,
+    .step-card {
+        padding: 25px 18px;
     }
 
-    .hero h1 {
-        font-size: 28px;
+    .cta h2 {
+        font-size: 25px;
     }
-}
-.menu-toggle {
-    display: none;
-}
 
-.statistics {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-}
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
 
-.about-points {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
+    .footer-content > div:first-child {
+        grid-column: auto;
+    }
 
-.issue-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
 }

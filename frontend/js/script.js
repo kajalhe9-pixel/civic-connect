@@ -1,40 +1,34 @@
-// Civic-Connect Navigation
+// MOBILE NAVIGATION
 
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
-menuToggle.addEventListener("click", function () {
+if (menuToggle && navLinks) {
 
-    navLinks.classList.toggle("active");
+    menuToggle.addEventListener("click", function () {
 
-    const isExpanded = navLinks.classList.contains("active");
+        const isOpen = navLinks.classList.toggle("active");
 
-    menuToggle.setAttribute("aria-expanded", isExpanded);
+        menuToggle.setAttribute("aria-expanded", isOpen);
 
-    menuToggle.textContent = isExpanded ? "✕" : "☰";
-
-});
-
-
-// Close mobile menu after clicking a navigation link
-
-const navItems = document.querySelectorAll(".nav-links a");
-
-navItems.forEach(function (link) {
-
-    link.addEventListener("click", function () {
-
-        navLinks.classList.remove("active");
-
-        menuToggle.textContent = "☰";
-
-        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = isOpen ? "✕" : "☰";
 
     });
 
-});
+    // Close menu after clicking a navigation link
 
+    navLinks.querySelectorAll("a").forEach(function (link) {
 
-// Welcome message
+        link.addEventListener("click", function () {
 
-console.log("Civic-Connect website loaded successfully!");
+            navLinks.classList.remove("active");
+
+            menuToggle.setAttribute("aria-expanded", "false");
+
+            menuToggle.textContent = "☰";
+
+        });
+
+    });
+
+}
