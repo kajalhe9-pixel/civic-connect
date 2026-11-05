@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Report an Issue | Civic-Connect</title>
+
+    <link rel="stylesheet" href="css/complaint.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="header">
+        <nav class="navbar">
+
+            <a href="index.html" class="logo">
+                <span>C</span> Civic-Connect
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="dashboard.html">My Complaints</a>
+            </div>
+
+            <a href="dashboard.html" class="back-btn">
+                ← Back to Dashboard
+            </a>
+
+        </nav>
+    </header>
+
+
+    <!-- PAGE HEADING -->
+    <section class="page-heading">
+
+        <span>MAKE YOUR COMMUNITY BETTER</span>
+
+        <h1>Report a Civic Issue</h1>
+
+        <p>
+            Help us identify problems and make your neighbourhood
+            cleaner, safer and better.
+        </p>
+
+    </section>
+
+
+    <!-- MAIN FORM -->
+    <main class="complaint-container">
+
+        <div class="form-card">
+
+            <div class="form-heading">
+                <h2>Complaint Details</h2>
+                <p>Fill in the details below to submit your complaint.</p>
+            </div>
+
+            <form id="complaintForm">
+
+                <!-- CATEGORY -->
+                <div class="form-group">
+
+                    <label for="category">Issue Category *</label>
+
+                    <select id="category" required>
+
+                        <option value="">Select a category</option>
+                        <option value="Road Damage">Road Damage</option>
+                        <option value="Water Problems">Water Problems</option>
+                        <option value="Garbage">Garbage</option>
+                        <option value="Streetlights">Streetlights</option>
+                        <option value="Drainage">Drainage</option>
+                        <option value="Electricity">Electricity</option>
+                        <option value="Public Safety">Public Safety</option>
+                        <option value="Other">Other</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- TITLE -->
+                <div class="form-group">
+
+                    <label for="title">Complaint Title *</label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        placeholder="Example: Large pothole near main road"
+                        maxlength="100"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+                <div class="form-group">
+
+                    <label for="description">Description *</label>
+
+                    <textarea
+                        id="description"
+                        rows="5"
+                        maxlength="1000"
+                        placeholder="Describe the problem in detail..."
+                        required
+                    ></textarea>
+
+                    <small>Maximum 1000 characters.</small>
+
+                </div>
+
+
+                <!-- IMAGE UPLOAD -->
+                <div class="form-group">
+
+                    <label>Upload Photos</label>
+
+                    <div class="upload-area">
+
+                        <div class="upload-icon">📷</div>
+
+                        <h3>Upload Issue Photographs</h3>
+
+                        <p>PNG, JPG or JPEG (Maximum 5 MB per image)</p>
+
+                        <input
+                            type="file"
+                            id="photos"
+                            accept="image/png,image/jpeg"
+                            multiple
+                        >
+
+                        <label for="photos" class="upload-btn">
+                            Choose Photos
+                        </label>
+
+                        <div id="imagePreview" class="image-preview"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LOCATION -->
+                <div class="form-group">
+
+                    <label>Complaint Location *</label>
+
+                    <div class="location-box">
+
+                        <p>
+                            📍 Capture your current location using GPS.
+                        </p>
+
+                        <button type="button" id="locationBtn">
+                            Get Current Location
+                        </button>
+
+                        <p id="locationStatus">
+                            Location not captured yet.
+                        </p>
+
+                        <div class="location-coordinates">
+
+                            <input
+                                type="text"
+                                id="latitude"
+                                placeholder="Latitude"
+                                readonly
+                            >
+
+                            <input
+                                type="text"
+                                id="longitude"
+                                placeholder="Longitude"
+                                readonly
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ADDRESS -->
+                <div class="form-group">
+
+                    <label for="address">Full Address *</label>
+
+                    <textarea
+                        id="address"
+                        rows="3"
+                        placeholder="Enter street, area, city and landmark"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+                <div class="form-actions">
+
+                    <button type="reset" class="reset-btn">
+                        Clear Form
+                    </button>
+
+                    <button type="submit" class="submit-btn">
+                        Submit Complaint →
+                    </button>
+
+                </div>
+
+            </form>
+
+            <div id="successMessage" class="success-message" hidden>
+
+                <h3>✓ Complaint Submitted Successfully!</h3>
+
+                <p id="successDetails"></p>
+
+                <a href="dashboard.html">
+                    Go to Dashboard
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <h3>Civic-Connect</h3>
+
+        <p>Connecting citizens. Improving communities.</p>
+
+        <p>© 2026 Civic-Connect. All rights reserved.</p>
+
+    </footer>
+
+
+    <script src="js/complaint.js"></script>
+
+</body>
+</html>
