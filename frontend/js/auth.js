@@ -1,20 +1,25 @@
-// PASSWORD SHOW / HIDE
+// SHOW AND HIDE PASSWORD
 
 const toggleButtons = document.querySelectorAll(".toggle-password");
 
-toggleButtons.forEach(function (button) {
+toggleButtons.forEach(function(button) {
 
-    button.addEventListener("click", function () {
+    button.addEventListener("click", function() {
 
-        const targetId = button.dataset.target;
+        const targetId = button.getAttribute("data-target");
+
         const passwordInput = document.getElementById(targetId);
 
         if (passwordInput.type === "password") {
+
             passwordInput.type = "text";
             button.textContent = "Hide";
+
         } else {
+
             passwordInput.type = "password";
             button.textContent = "Show";
+
         }
 
     });
@@ -22,129 +27,45 @@ toggleButtons.forEach(function (button) {
 });
 
 
-// LOGIN FORM VALIDATION
-
-const loginForm = document.getElementById("loginForm");
-
-if (loginForm) {
-
-    loginForm.addEventListener("submit", function (event) {
-
-        event.preventDefault();
-
-        const email = document.getElementById("loginEmail").value.trim();
-        const password = document.getElementById("loginPassword").value;
-
-        const message = document.getElementById("loginMessage");
-
-        if (!email || !password) {
-
-            message.textContent = "Please fill in all fields.";
-            message.className = "form-message error";
-
-            return;
-        }
-
-        message.textContent =
-            "Frontend validation successful! Backend login will be connected next.";
-
-        message.className = "form-message success";
-
-    });
-
-}
-
-
-// REGISTRATION FORM VALIDATION
+// REGISTRATION PASSWORD VALIDATION
 
 const registerForm = document.getElementById("registerForm");
 
 if (registerForm) {
 
-    registerForm.addEventListener("submit", function (event) {
+    registerForm.addEventListener("submit", function(event) {
 
         event.preventDefault();
-
-        const name = document.getElementById("fullName").value.trim();
-
-        const email = document.getElementById("registerEmail").value.trim();
-
-        const mobile = document.getElementById("mobile").value.trim();
 
         const password = document.getElementById("registerPassword").value;
 
         const confirmPassword = document.getElementById("confirmPassword").value;
 
-        const terms = document.getElementById("terms").checked;
-
-        const message = document.getElementById("registerMessage");
-
-
-        if (name.length < 3) {
-
-            showError("Please enter a valid full name.");
-            return;
-
-        }
-
-        if (!/^[6-9]\d{9}$/.test(mobile)) {
-
-            showError("Enter a valid 10-digit Indian mobile number.");
-            return;
-
-        }
-
-        if (password.length < 8) {
-
-            showError("Password must contain at least 8 characters.");
-            return;
-
-        }
-
         if (password !== confirmPassword) {
 
-            showError("Passwords do not match.");
+            alert("Passwords do not match!");
             return;
 
         }
 
-        if (!terms) {
-
-            showError("Please accept the Terms and Conditions.");
-            return;
-
-        }
-
-
-        message.textContent =
-            "Frontend validation successful! Backend registration will be connected next.";
-
-        message.className = "form-message success";
-
-
-        function showError(text) {
-
-            message.textContent = text;
-            message.className = "form-message error";
-
-        }
+        alert("Registration form is ready for backend integration!");
 
     });
 
 }
 
 
-// FORGOT PASSWORD PLACEHOLDER
+// LOGIN FORM
 
-const forgotPassword = document.getElementById("forgotPassword");
+const loginForm = document.getElementById("loginForm");
 
-if (forgotPassword) {
+if (loginForm) {
 
-    forgotPassword.addEventListener("click", function (event) {
+    loginForm.addEventListener("submit", function(event) {
 
         event.preventDefault();
 
-        alert("Forgot password functionality will be added later.");
+        alert("Login form is ready for backend integration!");
 
     });
 

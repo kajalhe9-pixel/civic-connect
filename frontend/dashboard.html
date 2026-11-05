@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Citizen Dashboard | Civic-Connect</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+
+            <a href="index.html" class="sidebar-logo">
+                <span>C</span> Civic-Connect
+            </a>
+
+            <div class="sidebar-profile">
+                <div class="profile-avatar">C</div>
+                <div>
+                    <h3 id="sidebarName">Citizen</h3>
+                    <p>Citizen Account</p>
+                </div>
+            </div>
+
+            <p class="menu-heading">MAIN MENU</p>
+
+            <nav class="sidebar-menu">
+
+                <a href="dashboard.html" class="menu-link active">
+                    <span>▦</span> Dashboard
+                </a>
+
+                <a href="complaint.html" class="menu-link">
+                    <span>＋</span> Report an Issue
+                </a>
+
+                <a href="my-complaints.html" class="menu-link">
+                    <span>▤</span> My Complaints
+                </a>
+
+                <a href="profile.html" class="menu-link">
+                    <span>♙</span> My Profile
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <a href="index.html" class="menu-link">
+                    <span>⌂</span> Home
+                </a>
+
+                <button class="logout-btn" id="logoutBtn">
+                    <span>⇥</span> Logout
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- TOPBAR -->
+            <header class="topbar">
+
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    ☰
+                </button>
+
+                <div>
+                    <h2>Citizen Dashboard</h2>
+                    <p>Manage your civic complaints</p>
+                </div>
+
+                <div class="topbar-profile">
+                    <div class="profile-avatar small">C</div>
+                    <span id="topbarName">Citizen</span>
+                </div>
+
+            </header>
+
+
+            <!-- WELCOME -->
+            <section class="welcome-section">
+
+                <div>
+                    <p class="welcome-label">CITIZEN PORTAL</p>
+
+                    <h1>
+                        Welcome back,
+                        <span id="welcomeName">Citizen</span>!
+                    </h1>
+
+                    <p>
+                        Together, let's make our community
+                        cleaner, safer and better.
+                    </p>
+                </div>
+
+                <a href="complaint.html" class="report-btn">
+                    + Report New Issue
+                </a>
+
+            </section>
+
+
+            <!-- STATISTICS -->
+            <section class="stats-grid">
+
+                <div class="stat-card blue">
+                    <div class="stat-icon">▤</div>
+                    <p>Total Complaints</p>
+                    <h2 id="totalComplaints">0</h2>
+                    <span>All submitted complaints</span>
+                </div>
+
+                <div class="stat-card orange">
+                    <div class="stat-icon">◷</div>
+                    <p>Pending</p>
+                    <h2 id="pendingComplaints">0</h2>
+                    <span>Waiting for review</span>
+                </div>
+
+                <div class="stat-card purple">
+                    <div class="stat-icon">⚙</div>
+                    <p>In Progress</p>
+                    <h2 id="progressComplaints">0</h2>
+                    <span>Currently being resolved</span>
+                </div>
+
+                <div class="stat-card green">
+                    <div class="stat-icon">✓</div>
+                    <p>Resolved</p>
+                    <h2 id="resolvedComplaints">0</h2>
+                    <span>Successfully resolved</span>
+                </div>
+
+            </section>
+
+
+            <!-- RECENT COMPLAINTS -->
+            <section class="complaints-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Recent Complaints</h2>
+                        <p>Track the status of your reported issues.</p>
+                    </div>
+
+                    <a href="my-complaints.html" class="view-all">
+                        View All →
+                    </a>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Complaint ID</th>
+                                <th>Issue</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="complaintsTable">
+
+                            <!-- JavaScript loads complaints here -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- QUICK ACTIONS -->
+            <section class="quick-section">
+
+                <h2>Quick Actions</h2>
+
+                <div class="quick-grid">
+
+                    <a href="complaint.html" class="quick-card">
+                        <span>＋</span>
+                        <h3>Report an Issue</h3>
+                        <p>Submit a new civic complaint.</p>
+                    </a>
+
+                    <a href="my-complaints.html" class="quick-card">
+                        <span>▤</span>
+                        <h3>Track Complaints</h3>
+                        <p>Check your complaint status.</p>
+                    </a>
+
+                    <a href="profile.html" class="quick-card">
+                        <span>♙</span>
+                        <h3>My Profile</h3>
+                        <p>Manage your account details.</p>
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer class="dashboard-footer">
+                © 2026 Civic-Connect. Building Better Communities.
+            </footer>
+
+        </main>
+
+    </div>
+
+    <script src="js/dashboard.js"></script>
+
+</body>
+</html>
