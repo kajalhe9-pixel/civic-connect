@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Complaint Details | Civic-Connect</title>
+
+    <link rel="stylesheet" href="css/complaint-details.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">Civic-Connect</div>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="complaint.html">Report Issue</a>
+            <a href="my-complaints.html">My Complaints</a>
+            <a href="area-issues.html">Explore Issues</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <a href="my-complaints.html" class="back-link">
+            ← Back to My Complaints
+        </a>
+
+        <section class="page-heading">
+            <div>
+                <p class="eyebrow">COMPLAINT TRACKING</p>
+                <h1>Complaint Details</h1>
+                <p>View your complaint information and track its progress.</p>
+            </div>
+
+            <span class="status-badge" id="statusBadge">In Progress</span>
+        </section>
+
+        <section class="details-card">
+
+            <div class="card-heading">
+                <div>
+                    <p class="muted">Complaint ID</p>
+                    <h2 id="complaintId">CC-1002</h2>
+                </div>
+
+                <span class="category-badge" id="category">
+                    Water Problems
+                </span>
+            </div>
+
+            <div class="details-content">
+
+                <h2 id="complaintTitle">
+                    Water leakage near residential area
+                </h2>
+
+                <p id="description">
+                    Continuous water leakage has been observed near the
+                    residential area. It is causing water wastage and
+                    inconvenience.
+                </p>
+
+                <div class="info-grid">
+
+                    <div>
+                        <span>Reported Date</span>
+                        <strong id="date">02 November 2026</strong>
+                    </div>
+
+                    <div>
+                        <span>Location</span>
+                        <strong id="location">Delhi, India</strong>
+                    </div>
+
+                    <div>
+                        <span>Assigned Department</span>
+                        <strong id="department">Water Department</strong>
+                    </div>
+
+                    <div>
+                        <span>Last Updated</span>
+                        <strong id="updated">04 November 2026</strong>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="tracking-card">
+
+            <h2>Complaint Progress</h2>
+
+            <p class="section-description">
+                Follow the progress of your complaint.
+            </p>
+
+            <div class="timeline" id="timeline"></div>
+
+        </section>
+
+        <section class="remarks-card">
+
+            <h2>Authority Remarks</h2>
+
+            <div id="remarksList"></div>
+
+        </section>
+
+        <section class="photos-card">
+
+            <h2>Uploaded Photos</h2>
+
+            <div class="photo-placeholder">
+                <span>📷</span>
+                <p>
+                    Uploaded complaint photographs will appear here
+                    after backend integration.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Civic-Connect | Better Communities Together</p>
+    </footer>
+
+    <script src="js/complaint-details.js"></script>
+
+</body>
+</html>

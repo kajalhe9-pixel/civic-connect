@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Explore Issues | Civic-Connect</title>
+
+    <link rel="stylesheet" href="css/area-issues.css">
+
+    <!-- Leaflet Map CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Civic-Connect</a>
+
+            <div class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="complaint.html">Report Issue</a>
+                <a href="my-complaints.html">My Complaints</a>
+                <a href="area-issues.html" class="active">Explore Issues</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <section class="page-heading">
+            <h1>Issues in Your Area</h1>
+            <p>
+                Explore civic problems reported by people in your community
+                and stay informed about your surroundings.
+            </p>
+        </section>
+
+        <section class="filter-section">
+
+            <div class="search-box">
+                <label for="locationSearch">Search by location or issue</label>
+                <input
+                    type="search"
+                    id="locationSearch"
+                    placeholder="Enter area, sector or complaint..."
+                >
+            </div>
+
+            <div class="category-box">
+                <label for="categoryFilter">Filter by category</label>
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="Road Damage">Road Damage</option>
+                    <option value="Water Problems">Water Problems</option>
+                    <option value="Electricity">Electricity</option>
+                    <option value="Sanitation">Sanitation</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <button id="resetFilters" class="reset-btn">
+                Reset Filters
+            </button>
+
+        </section>
+
+        <section class="map-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Issue Locations</h2>
+                    <p>Explore reported issues on the map.</p>
+                </div>
+                <span class="demo-label">Demo locations</span>
+            </div>
+
+            <div id="issuesMap"></div>
+        </section>
+
+        <section class="issues-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Reported Issues</h2>
+                    <p id="resultCount">Loading complaints...</p>
+                </div>
+            </div>
+
+            <div id="issuesList" class="issues-grid"></div>
+
+            <div id="emptyMessage" class="empty-message" hidden>
+                <h3>No issues found</h3>
+                <p>Try changing your search or category filter.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Civic-Connect. Building Better Communities Together.</p>
+    </footer>
+
+    <!-- Leaflet Map JavaScript -->
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+    <script src="js/area-issues.js"></script>
+
+</body>
+</html>

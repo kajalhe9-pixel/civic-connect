@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Complaints | Civic-Connect</title>
+
+    <link rel="stylesheet" href="css/my-complaints.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+            <span>C</span> Civic-Connect
+        </a>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="complaint.html">Report Issue</a>
+            <a href="my-complaints.html" class="active">My Complaints</a>
+            <a href="area-issues.html">Explore Issues</a>
+        </nav>
+
+        <a href="dashboard.html" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <!-- PAGE HEADING -->
+    <section class="page-heading">
+
+        <span>CITIZEN PORTAL</span>
+
+        <h1>My Complaints</h1>
+
+        <p>
+            View your reported issues and track their progress.
+        </p>
+
+    </section>
+
+
+    <main class="container">
+
+        <!-- STATISTICS -->
+        <section class="summary-grid">
+
+            <div class="summary-card">
+                <p>Total Complaints</p>
+                <h2 id="totalCount">0</h2>
+            </div>
+
+            <div class="summary-card pending-card">
+                <p>Pending</p>
+                <h2 id="pendingCount">0</h2>
+            </div>
+
+            <div class="summary-card progress-card">
+                <p>In Progress</p>
+                <h2 id="progressCount">0</h2>
+            </div>
+
+            <div class="summary-card resolved-card">
+                <p>Resolved</p>
+                <h2 id="resolvedCount">0</h2>
+            </div>
+
+        </section>
+
+
+        <!-- FILTER SECTION -->
+        <section class="filter-section">
+
+            <div>
+                <h2>All Complaints</h2>
+                <p>Manage and track your submitted complaints.</p>
+            </div>
+
+            <a href="complaint.html" class="new-btn">
+                + Report New Issue
+            </a>
+
+        </section>
+
+
+        <!-- SEARCH AND FILTER -->
+        <section class="search-section">
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search by complaint ID or title..."
+            >
+
+            <select id="statusFilter">
+
+                <option value="All">All Status</option>
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+
+            </select>
+
+            <select id="categoryFilter">
+
+                <option value="All">All Categories</option>
+                <option value="Road Damage">Road Damage</option>
+                <option value="Water Problems">Water Problems</option>
+                <option value="Garbage">Garbage</option>
+                <option value="Streetlights">Streetlights</option>
+                <option value="Drainage">Drainage</option>
+                <option value="Electricity">Electricity</option>
+
+            </select>
+
+        </section>
+
+
+        <!-- COMPLAINT LIST -->
+        <section class="complaint-list" id="complaintList">
+
+        </section>
+
+
+        <!-- EMPTY STATE -->
+        <div class="empty-state" id="emptyState" hidden>
+
+            <div>📭</div>
+
+            <h2>No Complaints Found</h2>
+
+            <p>Try changing your search or filter.</p>
+
+        </div>
+
+
+        <!-- DETAILS MODAL -->
+        <div class="modal" id="detailsModal" hidden>
+
+            <div class="modal-content">
+
+                <button class="close-btn" id="closeModal">
+                    ×
+                </button>
+
+                <h2>Complaint Details</h2>
+
+                <div id="complaintDetails"></div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer class="footer">
+
+        <h3>Civic-Connect</h3>
+
+        <p>Connecting citizens. Improving communities.</p>
+
+        <p>© 2026 Civic-Connect. All rights reserved.</p>
+
+    </footer>
+
+
+    <script src="js/my-complaints.js"></script>
+
+</body>
+</html>
