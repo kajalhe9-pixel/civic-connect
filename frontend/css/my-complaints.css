@@ -282,6 +282,27 @@ a {
     background: #d6e7ff;
 }
 
+.delete-complaint-btn {
+    border: 1px solid #d64545;
+    background: white;
+    color: #b42323;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    margin: 18px 0 0 8px;
+}
+
+.delete-complaint-btn:hover {
+    background: #fff0f0;
+}
+
+.delete-complaint-btn:disabled {
+    cursor: wait;
+    opacity: 0.6;
+}
+
 /* EMPTY STATE */
 
 .empty-state {

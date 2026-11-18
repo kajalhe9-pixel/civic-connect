@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | Civic-Connect</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar" id="sidebar">
+            <a href="index.html" class="sidebar-logo">
+                <span>C</span> Civic-Connect
+            </a>
+
+            <div class="sidebar-profile">
+                <div class="profile-avatar" id="sidebarAvatar">C</div>
+                <div>
+                    <h3 id="sidebarName">Citizen</h3>
+                    <p>Citizen Account</p>
+                </div>
+            </div>
+
+            <p class="menu-heading">MAIN MENU</p>
+
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-link">
+                    <span>▦</span> Dashboard
+                </a>
+                <a href="complaint.html" class="menu-link">
+                    <span>＋</span> Report an Issue
+                </a>
+                <a href="my-complaints.html" class="menu-link">
+                    <span>▤</span> My Complaints
+                </a>
+                <a href="area-issues.html" class="menu-link">
+                    <span>🌍</span> Explore Issues
+                </a>
+                <a href="profile.html" class="menu-link active" aria-current="page">
+                    <span>♙</span> My Profile
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <a href="index.html" class="menu-link">
+                    <span>⌂</span> Home
+                </a>
+                <button class="logout-btn" id="logoutBtn" type="button">
+                    <span>⇥</span> Logout
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Toggle navigation">
+                    ☰
+                </button>
+
+                <div>
+                    <h2>My Profile</h2>
+                    <p>View your account details</p>
+                </div>
+
+                <div class="topbar-profile">
+                    <div class="profile-avatar small" id="topbarAvatar">C</div>
+                    <span id="topbarName">Citizen</span>
+                </div>
+            </header>
+
+            <section class="profile-card" aria-labelledby="profileHeading">
+                <div class="profile-heading">
+                    <h1 id="profileHeading">Account Details</h1>
+                    <p>Your Civic-Connect account information.</p>
+                </div>
+
+                <p id="profileStatus" class="profile-message" role="status">
+                    Loading your profile...
+                </p>
+
+                <p id="profileError" class="profile-message profile-error" role="alert" hidden></p>
+
+                <div class="profile-details" id="profileDetails" hidden>
+                    <div class="profile-field">
+                        <span>Full name</span>
+                        <strong id="profileName"></strong>
+                    </div>
+                    <div class="profile-field">
+                        <span>Email address</span>
+                        <strong id="profileEmail"></strong>
+                    </div>
+                    <div class="profile-field">
+                        <span>Account type</span>
+                        <strong id="profileRole"></strong>
+                    </div>
+                    <div class="profile-field">
+                        <span>Member since</span>
+                        <strong id="profileCreatedAt"></strong>
+                    </div>
+                </div>
+
+                <a href="dashboard.html" class="profile-back-link">← Back to dashboard</a>
+            </section>
+
+            <footer class="dashboard-footer">
+                © 2026 Civic-Connect. Building Better Communities.
+            </footer>
+        </main>
+
+    </div>
+
+    <script src="js/profile.js"></script>
+</body>
+</html>

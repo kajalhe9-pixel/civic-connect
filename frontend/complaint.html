@@ -67,19 +67,19 @@
 
                     <label for="category">Issue Category *</label>
 
-                    <select id="category" required>
+                    
+        <select id="category" required>
+            <option value="">Select a category</option>
+            <option value="Roads">Road Damage</option>
+            <option value="Water Supply">Water Problems</option>
+            <option value="Sanitation">Garbage</option>
+            <option value="Street Lights">Streetlights</option>
+            <option value="Sanitation">Drainage</option>
+            <option value="Electricity">Electricity</option>
+            <option value="Other">Public Safety</option>
+            <option value="Other">Other</option>
+        </select>
 
-                        <option value="">Select a category</option>
-                        <option value="Road Damage">Road Damage</option>
-                        <option value="Water Problems">Water Problems</option>
-                        <option value="Garbage">Garbage</option>
-                        <option value="Streetlights">Streetlights</option>
-                        <option value="Drainage">Drainage</option>
-                        <option value="Electricity">Electricity</option>
-                        <option value="Public Safety">Public Safety</option>
-                        <option value="Other">Other</option>
-
-                    </select>
 
                 </div>
 
@@ -127,19 +127,18 @@
 
                         <div class="upload-icon">📷</div>
 
-                        <h3>Upload Issue Photographs</h3>
+                        <h3>Upload Issue Photograph</h3>
 
-                        <p>PNG, JPG or JPEG (Maximum 5 MB per image)</p>
+                        <p>PNG, JPG or JPEG (Maximum 5 MB )</p>
 
                         <input
                             type="file"
                             id="photos"
                             accept="image/png,image/jpeg"
-                            multiple
                         >
 
                         <label for="photos" class="upload-btn">
-                            Choose Photos
+                            Choose Photo
                         </label>
 
                         <div id="imagePreview" class="image-preview"></div>

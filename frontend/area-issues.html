@@ -56,10 +56,11 @@
                 <label for="categoryFilter">Filter by category</label>
                 <select id="categoryFilter">
                     <option value="all">All Categories</option>
-                    <option value="Road Damage">Road Damage</option>
-                    <option value="Water Problems">Water Problems</option>
+                    <option value="Roads">Road Damage</option>
+                    <option value="Water Supply">Water Problems</option>
                     <option value="Electricity">Electricity</option>
                     <option value="Sanitation">Sanitation</option>
+                    <option value="Street Lights">Street Lights</option>
                     <option value="Other">Other</option>
                 </select>
             </div>
@@ -76,10 +77,13 @@
                     <h2>Issue Locations</h2>
                     <p>Explore reported issues on the map.</p>
                 </div>
-                <span class="demo-label">Demo locations</span>
+                <span class="map-note">GPS pins from submitted reports</span>
             </div>
 
             <div id="issuesMap"></div>
+            <p id="mapStatus" class="map-status" role="status">
+                Loading issue locations...
+            </p>
         </section>
 
         <section class="issues-section">

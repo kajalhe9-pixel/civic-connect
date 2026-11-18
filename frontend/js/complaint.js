@@ -1,75 +1,60 @@
+
 // GET ELEMENTS
 
 const complaintForm = document.getElementById("complaintForm");
-
 const photoInput = document.getElementById("photos");
-
 const imagePreview = document.getElementById("imagePreview");
-
 const locationBtn = document.getElementById("locationBtn");
-
 const locationStatus = document.getElementById("locationStatus");
-
 const latitudeInput = document.getElementById("latitude");
-
 const longitudeInput = document.getElementById("longitude");
-
 const successMessage = document.getElementById("successMessage");
-
 const successDetails = document.getElementById("successDetails");
 
+const API_URL = "http://localhost:5000/api/complaints";
 
-// PHOTO UPLOAD AND PREVIEW
 
-photoInput.addEventListener("change", function() {
+// SINGLE PHOTO UPLOAD AND PREVIEW
+
+photoInput.addEventListener("change", function () {
 
     imagePreview.innerHTML = "";
 
-    const files = Array.from(photoInput.files);
+    const file = photoInput.files[0];
 
-    if (files.length > 5) {
-        alert("You can upload a maximum of 5 photos.");
+    if (!file) {
+        return;
+    }
+
+    // Check file type
+    if (!["image/jpeg", "image/png"].includes(file.type)) {
+        alert("Only JPG and PNG images are allowed.");
         photoInput.value = "";
         return;
     }
 
-    for (const file of files) {
-
-        if (!["image/jpeg", "image/png"].includes(file.type)) {
-            alert("Only JPG and PNG images are allowed.");
-            photoInput.value = "";
-            imagePreview.innerHTML = "";
-            return;
-        }
-
-        if (file.size > 5 * 1024 * 1024) {
-            alert("Each image must be smaller than 5 MB.");
-            photoInput.value = "";
-            imagePreview.innerHTML = "";
-            return;
-        }
-
+    // Check file size (5 MB)
+    if (file.size > 5 * 1024 * 1024) {
+        alert("Image must be smaller than 5 MB.");
+        photoInput.value = "";
+        return;
     }
 
-    files.forEach(function(file) {
+    // Show image preview
+    const reader = new FileReader();
 
-        const reader = new FileReader();
+    reader.onload = function (event) {
 
-        reader.onload = function(event) {
+        const image = document.createElement("img");
 
-            const image = document.createElement("img");
+        image.src = event.target.result;
+        image.alt = "Complaint photograph";
 
-            image.src = event.target.result;
+        imagePreview.appendChild(image);
 
-            image.alt = "Complaint photograph";
+    };
 
-            imagePreview.appendChild(image);
-
-        };
-
-        reader.readAsDataURL(file);
-
-    });
+    reader.readAsDataURL(file);
 
 });
 
@@ -95,11 +80,9 @@ locationBtn.addEventListener("click", function() {
         function(position) {
 
             const latitude = position.coords.latitude;
-
             const longitude = position.coords.longitude;
 
             latitudeInput.value = latitude;
-
             longitudeInput.value = longitude;
 
             locationStatus.textContent =
@@ -108,7 +91,6 @@ locationBtn.addEventListener("click", function() {
             locationStatus.style.color = "#168354";
 
             locationBtn.textContent = "Location Captured ✓";
-
             locationBtn.disabled = false;
 
         },
@@ -126,9 +108,7 @@ locationBtn.addEventListener("click", function() {
             }
 
             locationStatus.textContent = message;
-
             locationBtn.textContent = "Try Again";
-
             locationBtn.disabled = false;
 
         },
@@ -144,76 +124,134 @@ locationBtn.addEventListener("click", function() {
 });
 
 
-// GENERATE COMPLAINT ID
+// SUBMIT COMPLAINT TO BACKEND
 
-function generateComplaintId() {
-
-    return "CC-" + Date.now().toString().slice(-8);
-
-}
-
-
-// SUBMIT COMPLAINT
-
-complaintForm.addEventListener("submit", function(event) {
+complaintForm.addEventListener("submit", async function(event) {
 
     event.preventDefault();
 
+    // Check login token
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        alert("Please login before submitting a complaint.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    // Get form values
     const category = document.getElementById("category").value;
-
     const title = document.getElementById("title").value.trim();
-
-    const description =
-        document.getElementById("description").value.trim();
-
+    const description = document.getElementById("description").value.trim();
     const address = document.getElementById("address").value.trim();
 
     const latitude = latitudeInput.value;
-
     const longitude = longitudeInput.value;
 
-
+    // Validate required fields
     if (!category || !title || !description || !address) {
-
         alert("Please fill in all required fields.");
-
         return;
-
     }
 
     if (description.length < 10) {
-
         alert("Please provide a more detailed description.");
-
         return;
-
     }
 
     if (latitude === "" || longitude === "") {
-
         alert("Please capture your GPS location before submitting.");
-
         return;
-
     }
 
+    // Prepare form data
+    const formData = new FormData();
 
-    const complaintId = generateComplaintId();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("category", category);
+    formData.append("address", address);
+    formData.append("latitude", Number(latitude));
+    formData.append("longitude", Number(longitude));
 
+    // Add image if selected
+    const file = photoInput.files[0];
 
-    successDetails.textContent =
-        "Your demonstration complaint ID is " + complaintId +
-        ". Category: " + category + ".";
+    if (file) {
+        formData.append("image", file);
+    }
 
+    // Disable submit button while submitting
+    const submitBtn = complaintForm.querySelector(
+        'button[type="submit"]'
+    );
 
-    successMessage.hidden = false;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting...";
 
-    complaintForm.hidden = true;
+    try {
 
-    successMessage.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+        const response = await fetch(API_URL, {
+
+            method: "POST",
+
+            headers: {
+                "Authorization": `Bearer ${token}`
+            },
+
+            body: formData
+
+        });
+
+        const data = await response.json();
+
+        // Handle expired or invalid login
+        if (response.status === 401 || response.status === 403) {
+
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+
+            alert("Your session has expired. Please login again.");
+
+            window.location.href = "login.html";
+            return;
+        }
+
+        // Handle backend errors
+        if (!response.ok) {
+
+            alert(data.message || "Complaint submission failed.");
+            return;
+        }
+
+        // Show success only after backend saves complaint
+        const savedComplaint = data.complaint;
+
+        successDetails.textContent =
+            "Your complaint has been saved successfully. " +
+            "Category: " + savedComplaint.category +
+            ". Reference ID: " + savedComplaint._id;
+
+        successMessage.hidden = false;
+        complaintForm.hidden = true;
+
+        successMessage.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    } catch (error) {
+
+        console.error("Complaint submission error:", error);
+
+        alert("Unable to connect to the backend. Please try again.");
+
+    } finally {
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit Complaint →";
+
+    }
 
 });
 
@@ -225,15 +263,12 @@ complaintForm.addEventListener("reset", function() {
     imagePreview.innerHTML = "";
 
     latitudeInput.value = "";
-
     longitudeInput.value = "";
 
     locationStatus.textContent = "Location not captured yet.";
-
     locationStatus.style.color = "";
 
     locationBtn.textContent = "Get Current Location";
-
     locationBtn.disabled = false;
 
     successMessage.hidden = true;

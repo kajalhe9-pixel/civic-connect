@@ -1,74 +1,5 @@
-// DEMO PUBLIC COMPLAINT DATA
-// These are sample records and sample map coordinates.
-
-const publicIssues = [
-    {
-        id: "CC-2001",
-        title: "Pothole on Main Road",
-        category: "Road Damage",
-        description: "A large pothole is making the road unsafe for commuters.",
-        location: "Karol Bagh, Delhi",
-        date: "2026-11-01",
-        status: "Pending",
-        lat: 28.6519,
-        lng: 77.1909
-    },
-    {
-        id: "CC-2002",
-        title: "Water Pipeline Leakage",
-        category: "Water Problems",
-        description: "Water is continuously leaking from a damaged pipeline.",
-        location: "Patel Nagar, Delhi",
-        date: "2026-11-02",
-        status: "In Progress",
-        lat: 28.6510,
-        lng: 77.1690
-    },
-    {
-        id: "CC-2003",
-        title: "Streetlight Not Working",
-        category: "Electricity",
-        description: "Streetlights are not working near the residential area.",
-        location: "Rajendra Place, Delhi",
-        date: "2026-11-03",
-        status: "Resolved",
-        lat: 28.6420,
-        lng: 77.1780
-    },
-    {
-        id: "CC-2004",
-        title: "Garbage Collection Issue",
-        category: "Sanitation",
-        description: "Garbage has not been collected for several days.",
-        location: "Pusa Road, Delhi",
-        date: "2026-11-04",
-        status: "Pending",
-        lat: 28.6380,
-        lng: 77.1900
-    },
-    {
-        id: "CC-2005",
-        title: "Blocked Drainage",
-        category: "Sanitation",
-        description: "Drainage water is overflowing onto the road.",
-        location: "Shadipur, Delhi",
-        date: "2026-11-05",
-        status: "In Progress",
-        lat: 28.6515,
-        lng: 77.1570
-    },
-    {
-        id: "CC-2006",
-        title: "Broken Road Divider",
-        category: "Other",
-        description: "A damaged road divider needs repair.",
-        location: "Connaught Place, Delhi",
-        date: "2026-11-06",
-        status: "Resolved",
-        lat: 28.6315,
-        lng: 77.2167
-    }
-];
+const API_URL = "http://localhost:5000/api/complaints";
+let publicIssues = [];
 
 // GET HTML ELEMENTS
 
@@ -79,16 +10,24 @@ const resetFilters = document.getElementById("resetFilters");
 const issuesList = document.getElementById("issuesList");
 const resultCount = document.getElementById("resultCount");
 const emptyMessage = document.getElementById("emptyMessage");
+const mapStatus = document.getElementById("mapStatus");
 
 // MAP SETUP
 
-const map = L.map("issuesMap").setView([28.644, 77.180], 12);
+let map;
+let markerLayer;
 
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+if (typeof L !== "undefined") {
+    map = L.map("issuesMap").setView([28.644, 77.180], 12);
 
-const markerLayer = L.layerGroup().addTo(map);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    markerLayer = L.layerGroup().addTo(map);
+} else {
+    mapStatus.textContent = "The map could not be loaded. Issue locations are listed below.";
+}
 
 // ESCAPE HTML TO DISPLAY TEXT SAFELY
 
@@ -103,6 +42,22 @@ function escapeHTML(value) {
         };
 
         return entities[character];
+    });
+}
+
+function formatDate(date) {
+    if (!date) return "Date not available";
+
+    const parsedDate = new Date(date);
+
+    if (Number.isNaN(parsedDate.getTime())) {
+        return "Date not available";
+    }
+
+    return parsedDate.toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
     });
 }
 
@@ -166,7 +121,7 @@ function displayIssues(issues) {
 
             <div class="issue-meta">
                 <span>📍 ${escapeHTML(issue.location)}</span>
-                <span>📅 ${escapeHTML(issue.date)}</span>
+                <span>📅 ${formatDate(issue.date)}</span>
             </div>
         `;
 
@@ -177,12 +132,33 @@ function displayIssues(issues) {
 // DISPLAY MAP MARKERS
 
 function displayMarkers(issues) {
+    if (!markerLayer) return;
+
     markerLayer.clearLayers();
 
     const bounds = [];
+    let markerCount = 0;
 
     issues.forEach(issue => {
-        const marker = L.marker([issue.lat, issue.lng]);
+        const latitude = Number(issue.lat);
+        const longitude = Number(issue.lng);
+
+        if (
+            issue.lat === null ||
+            issue.lat === undefined ||
+            issue.lng === null ||
+            issue.lng === undefined ||
+            !Number.isFinite(latitude) ||
+            !Number.isFinite(longitude) ||
+            latitude < -90 ||
+            latitude > 90 ||
+            longitude < -180 ||
+            longitude > 180
+        ) {
+            return;
+        }
+
+        const marker = L.marker([latitude, longitude]);
 
         marker.bindPopup(`
             <strong>${escapeHTML(issue.title)}</strong>
@@ -198,7 +174,8 @@ function displayMarkers(issues) {
 
         marker.addTo(markerLayer);
 
-        bounds.push([issue.lat, issue.lng]);
+        bounds.push([latitude, longitude]);
+        markerCount += 1;
     });
 
     if (bounds.length > 0) {
@@ -206,6 +183,10 @@ function displayMarkers(issues) {
             padding: [40, 40],
             maxZoom: 14
         });
+        mapStatus.textContent = `${markerCount} issue location(s) shown on the map.`;
+    } else {
+        mapStatus.textContent =
+            "No matching reports have GPS coordinates. Available addresses are shown on the issue cards.";
     }
 }
 
@@ -248,7 +229,56 @@ resetFilters.addEventListener("click", () => {
     filterIssues();
 });
 
-// INITIAL DISPLAY
+async function loadPublicIssues() {
+    const token = localStorage.getItem("token");
 
-displayIssues(publicIssues);
-displayMarkers(publicIssues);
+    if (!token) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    try {
+        resultCount.textContent = "Loading complaints...";
+
+        const response = await fetch(API_URL, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        const data = await response.json();
+
+        if (response.status === 401 || response.status === 403) {
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            window.location.href = "login.html";
+            return;
+        }
+
+        if (!response.ok) {
+            throw new Error(data.message || "Failed to load reported issues");
+        }
+
+        publicIssues = (data.complaints || []).map(complaint => ({
+            id: `CC-${String(complaint._id).slice(-8).toUpperCase()}`,
+            title: complaint.title || "Untitled issue",
+            category: complaint.category || "Other",
+            description: complaint.description || "",
+            location: complaint.location?.address || "Address not provided",
+            date: complaint.createdAt,
+            status: complaint.status || "Pending",
+            lat: complaint.location?.latitude,
+            lng: complaint.location?.longitude
+        }));
+
+        filterIssues();
+    } catch (error) {
+        console.error("Explore issues loading error:", error);
+        resultCount.textContent = "Unable to load reported issues.";
+        issuesList.textContent =
+            error.message || "Please check your connection and try again.";
+        emptyMessage.hidden = true;
+    }
+}
+
+loadPublicIssues();

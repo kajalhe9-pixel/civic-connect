@@ -155,9 +155,9 @@ body {
     font-size: 14px;
 }
 
-.demo-label {
-    background: #fff1d6;
-    color: #885500;
+.map-note {
+    background: #edf5ff;
+    color: #0866c6;
     padding: 7px 12px;
     border-radius: 20px;
     font-size: 12px;
@@ -171,6 +171,12 @@ body {
     border-radius: 12px;
     border: 1px solid #dce5ef;
     z-index: 1;
+}
+
+.map-status {
+    margin-top: 9px;
+    color: #65758b;
+    font-size: 12px;
 }
 
 /* Issue cards */
