@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/complaints";
+const API_URL = `${window.CIVIC_API_BASE_URL}/complaints`;
 let publicIssues = [];
 
 // GET HTML ELEMENTS

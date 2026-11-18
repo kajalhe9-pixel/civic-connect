@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api";
+const API_URL = window.CIVIC_API_BASE_URL;
 
 const profileStatus = document.getElementById("profileStatus");
 const profileError = document.getElementById("profileError");

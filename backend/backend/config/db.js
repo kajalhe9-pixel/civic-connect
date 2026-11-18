@@ -2,8 +2,10 @@
 const mongoose = require("mongoose");
 const dns = require("dns");
 
-// Use working DNS servers for MongoDB SRV lookup
-dns.setServers(["8.8.8.8", "1.1.1.1"]);
+// Use public DNS locally; production hosts provide their own DNS resolver.
+if (process.env.NODE_ENV !== "production") {
+    dns.setServers(["8.8.8.8", "1.1.1.1"]);
+}
 
 const connectDB = async () => {
     try {

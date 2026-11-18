@@ -1,5 +1,5 @@
 
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = `${window.CIVIC_API_BASE_URL}/auth`;
 
 // SHOW AND HIDE PASSWORD
 

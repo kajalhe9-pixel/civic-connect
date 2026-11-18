@@ -1,5 +1,5 @@
 
-const API_URL = "http://localhost:5000/api/complaints";
+const API_URL = `${window.CIVIC_API_BASE_URL}/complaints`;
 
 // GET COMPLAINT ID FROM URL
 const params = new URLSearchParams(window.location.search);
@@ -121,7 +121,7 @@ function displayImage(imagePath) {
     // Convert stored upload path into a browser URL
     const imageUrl = imagePath.startsWith("http")
         ? imagePath
-        : `http://localhost:5000/${imagePath.replace(/\\/g, "/").replace(/^\/+/, "")}`;
+        : `${window.CIVIC_BACKEND_ORIGIN}/${imagePath.replace(/\\/g, "/").replace(/^\/+/, "")}`;
 
     placeholder.innerHTML = "";
 

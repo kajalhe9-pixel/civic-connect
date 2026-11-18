@@ -11,7 +11,7 @@ const longitudeInput = document.getElementById("longitude");
 const successMessage = document.getElementById("successMessage");
 const successDetails = document.getElementById("successDetails");
 
-const API_URL = "http://localhost:5000/api/complaints";
+const API_URL = `${window.CIVIC_API_BASE_URL}/complaints`;
 
 
 // SINGLE PHOTO UPLOAD AND PREVIEW

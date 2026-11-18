@@ -1,5 +1,5 @@
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = window.CIVIC_API_BASE_URL;
 
 const token = localStorage.getItem("token");
 const storedUser = JSON.parse(localStorage.getItem("user") || "null");
