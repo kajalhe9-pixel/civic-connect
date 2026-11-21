@@ -1,5 +1,7 @@
 # Deploy Civic-Connect on Render
 
+Live app: [https://civic-connect-moz0.onrender.com](https://civic-connect-moz0.onrender.com)
+
 The `render.yaml` Blueprint deploys the frontend and Express API as one web service.
 
 1. Push the repository to GitHub.
@@ -7,10 +9,6 @@ The `render.yaml` Blueprint deploys the frontend and Express API as one web serv
 3. When prompted, provide `MONGO_URI` for the MongoDB Atlas database. Render generates `JWT_SECRET`.
 4. Configure MongoDB Atlas network access to allow connections from the Render service.
 5. Wait for the deployment to finish, then open the public URL shown on the Render service page.
-
-Once the public URL is available, add it to this document so it is easy to find on GitHub:
-
-`Live app: https://your-service-name.onrender.com`
 
 Keep database credentials in Render environment variables; never commit `.env`.
 
