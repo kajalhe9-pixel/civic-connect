@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicConnect | Admin Panel</title>
+
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+
+            <div class="logo">
+                <h2>🏙 CivicConnect</h2>
+                <p>Administration</p>
+            </div>
+
+            <nav>
+                <a href="#dashboard" class="nav-link active">Dashboard</a>
+                <a href="#complaints" class="nav-link">All Complaints</a>
+                <a href="#users" class="nav-link">Registered Users</a>
+            </nav>
+
+            <button id="logoutBtn" class="logout-btn">Logout</button>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <button id="sidebarToggle" class="menu-btn">☰</button>
+
+                <div>
+                    <h2>Admin Dashboard</h2>
+                    <p>Manage civic complaints and citizens</p>
+                </div>
+
+                <div class="admin-profile">
+                    <div class="avatar">A</div>
+                    <span id="adminName">Administrator</span>
+                </div>
+
+            </header>
+
+
+            <!-- DASHBOARD -->
+            <section id="dashboard">
+
+                <div class="welcome-section">
+                    <h1>Welcome, Admin!</h1>
+                    <p>Here's an overview of CivicConnect.</p>
+                </div>
+
+
+                <!-- STATISTICS -->
+                <div class="stats-grid">
+
+                    <div class="stat-card blue">
+                        <p>Total Complaints</p>
+                        <h2 id="totalComplaints">0</h2>
+                    </div>
+
+                    <div class="stat-card orange">
+                        <p>Pending Complaints</p>
+                        <h2 id="pendingComplaints">0</h2>
+                    </div>
+
+                    <div class="stat-card purple">
+                        <p>In Progress</p>
+                        <h2 id="progressComplaints">0</h2>
+                    </div>
+
+                    <div class="stat-card green">
+                        <p>Resolved Complaints</p>
+                        <h2 id="resolvedComplaints">0</h2>
+                    </div>
+
+                    <div class="stat-card red">
+                        <p>Rejected Complaints</p>
+                        <h2 id="rejectedComplaints">0</h2>
+                    </div>
+
+                    <div class="stat-card dark">
+                        <p>Registered Citizens</p>
+                        <h2 id="totalUsers">0</h2>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ALL COMPLAINTS -->
+            <section id="complaints" class="content-section">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>All Complaints</h2>
+                        <p>Review and manage complaints submitted by citizens.</p>
+                    </div>
+
+                    <button class="refresh-btn" id="refreshBtn">
+                        Refresh
+                    </button>
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Complaint ID</th>
+                                <th>Citizen</th>
+                                <th>Complaint</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Department</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="complaintsTable">
+                            <tr>
+                                <td colspan="8">Loading complaints...</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- REGISTERED USERS -->
+            <section id="users" class="content-section">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Registered Citizens</h2>
+                        <p>View users registered on CivicConnect.</p>
+                    </div>
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Registration Date</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="usersTable">
+                            <tr>
+                                <td colspan="4">Loading users...</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/admin.js"></script>
+
+</body>
+</html>

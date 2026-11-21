@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | Civic-Connect</title>
+
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body>
+
+    <div class="auth-container">
+
+        <div class="auth-left">
+
+            <a href="index.html" class="brand">Civic-Connect</a>
+
+            <div class="welcome-content">
+
+                <span class="auth-icon">🤝</span>
+
+                <h1>Join Your Community!</h1>
+
+                <p>
+                    Become a responsible citizen.
+                    Report problems and help create a cleaner,
+                    safer and better neighbourhood.
+                </p>
+
+                <div class="features">
+                    <p>✓ Be a voice for your community</p>
+                    <p>✓ Report problems with photos</p>
+                    <p>✓ Monitor complaint progress</p>
+                </div>
+
+            </div>
+
+            <p class="left-footer">
+                Small actions create big changes.
+            </p>
+
+        </div>
+
+
+        <div class="auth-right">
+
+            <div class="auth-card">
+
+                <a href="index.html" class="back-home">
+                    ← Back to Home
+                </a>
+
+                <h2>Create Account</h2>
+
+                <p class="auth-subtitle">
+                    Register to get started with Civic-Connect.
+                </p>
+
+                <form id="registerForm">
+
+                    <div class="form-group">
+
+                        <label for="fullName">Full Name</label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            placeholder="Enter your full name"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="registerEmail">Email Address</label>
+
+                        <input
+                            type="email"
+                            id="registerEmail"
+                            placeholder="Enter your email"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="phone">Mobile Number</label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Enter 10-digit mobile number"
+                            pattern="[0-9]{10}"
+                            maxlength="10"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="registerPassword">Password</label>
+
+                        <div class="password-field">
+
+                            <input
+                                type="password"
+                                id="registerPassword"
+                                placeholder="Create a password"
+                                minlength="8"
+                                required>
+
+                            <button type="button"
+                                class="toggle-password"
+                                data-target="registerPassword">
+                                Show
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <div class="password-field">
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                placeholder="Confirm your password"
+                                required>
+
+                            <button type="button"
+                                class="toggle-password"
+                                data-target="confirmPassword">
+                                Show
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <label class="terms">
+                        <input type="checkbox" required>
+                        I agree to the Terms and Conditions.
+                    </label>
+
+                    <button type="submit" class="auth-btn">
+                        Create Account
+                    </button>
+
+                </form>
+
+                <p class="auth-switch">
+                    Already have an account?
+                    <a href="login.html">Login</a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+
+</body>
+</html>
